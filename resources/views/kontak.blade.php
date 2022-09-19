@@ -1,6 +1,8 @@
-@extends('layouts.main')
+@extends('layouts.main2')
 @section('container')
-    <h1>Halaman Kontak</h1>
+    <div class="text-center">
+        <h1>Halaman Kontak</h1>
+    </div>
 
     <article class="mb-5">
         <h2>{{ $name }}</h2>

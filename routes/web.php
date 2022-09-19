@@ -7,9 +7,31 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::get('/', function () {
+    $blog = [
+        [
+            'title' => 'Judul Pertama',
+            'slug' => 'judul-pertama',
+            'author' => 'Ecobag',
+            'body' => 'Dolor eu consequat eu officia do. Sint mollit elit adipisicing reprehenderit in dolor duis fugiat enim minim. Amet irure cillum reprehenderit nostrud incididunt nisi. Nisi incididunt nulla esse reprehenderit officia elit. Incididunt quis reprehenderit esse ex elit.'
+        ],
+        [
+            'title' => 'Judul Kedua',
+            'slug' => 'judul-kedua',
+            'author' => 'Luthfy',
+            'body' => 'Dolor eu consequat eu officia do. Sint mollit elit adipisicing reprehenderit in dolor duis fugiat enim minim. Amet irure cillum reprehenderit nostrud incididunt nisi. Nisi incididunt nulla esse reprehenderit officia elit. Incididunt quis reprehenderit esse ex elit.'
+        ],
+        [
+            'title' => 'Judul Ketiga',
+            'slug' => 'judul-ketiga',
+            'author' => 'Baru_main982',
+            'body' => 'Dolor eu consequat eu officia do. Sint mollit elit adipisicing reprehenderit in dolor duis fugiat enim minim. Amet irure cillum reprehenderit nostrud incididunt nisi. Nisi incididunt nulla esse reprehenderit officia elit. Incididunt quis reprehenderit esse ex elit.'
+        ]
+    ];
+
     return view('home', [
         'name' => 'Hakim',
-        'title' => 'Home'
+        'title' => 'Home',
+        'blog' => $blog
     ]);
 });
 
@@ -87,5 +109,11 @@ Route::get('/kontak', function () {
         'title' => 'Kontak',
         'name' => 'Luthfy Hakim',
         'email' => 'luthfyhakim250404@gmail.com'
+    ]);
+});
+
+Route::get('/profil', function () {
+    return view('profil', [
+        'title' => 'Profil'
     ]);
 });

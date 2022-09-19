@@ -18,7 +18,6 @@
 </head>
 <body>
     @include('layouts.navbar')
-    @include('layouts.carousel')
     <div class="container mt-4">
         @yield('container')
     </div>
