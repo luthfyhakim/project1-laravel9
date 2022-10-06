@@ -22,7 +22,7 @@
         </div>
     </div>
 
-    @if ($blog > 0)
+    @if ($blog->count() > 0)
         <div class="text-center pt-5 mb-5">
             <h3>Blog Terbaru</h3>
         </div>
