@@ -1,100 +1,34 @@
 <?php
 
+use App\Models\Post;
 use Illuminate\Support\Facades\Route;
-
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\StudentController;
 
 Route::get('/', function () {
-    $blog = [
-        [
-            'title' => 'Judul Pertama',
-            'slug' => 'judul-pertama',
-            'author' => 'Ecobag',
-            'body' => 'Dolor eu consequat eu officia do. Sint mollit elit adipisicing reprehenderit in dolor duis fugiat enim minim. Amet irure cillum reprehenderit nostrud incididunt nisi. Nisi incididunt nulla esse reprehenderit officia elit. Incididunt quis reprehenderit esse ex elit.'
-        ],
-        [
-            'title' => 'Judul Kedua',
-            'slug' => 'judul-kedua',
-            'author' => 'Luthfy',
-            'body' => 'Dolor eu consequat eu officia do. Sint mollit elit adipisicing reprehenderit in dolor duis fugiat enim minim. Amet irure cillum reprehenderit nostrud incididunt nisi. Nisi incididunt nulla esse reprehenderit officia elit. Incididunt quis reprehenderit esse ex elit.'
-        ],
-        [
-            'title' => 'Judul Ketiga',
-            'slug' => 'judul-ketiga',
-            'author' => 'Baru_main982',
-            'body' => 'Dolor eu consequat eu officia do. Sint mollit elit adipisicing reprehenderit in dolor duis fugiat enim minim. Amet irure cillum reprehenderit nostrud incididunt nisi. Nisi incididunt nulla esse reprehenderit officia elit. Incididunt quis reprehenderit esse ex elit.'
-        ]
-    ];
-
     return view('home', [
         'name' => 'Hakim',
         'title' => 'Home',
-        'blog' => $blog
+        'blog' => Post::getAll()
     ]);
 });
 
-Route::get('/berita', function () {
-    $blog_posts = [
-        [
-            'title' => 'Judul Pertama',
-            'slug' => 'judul-pertama',
-            'author' => 'Ecobag',
-            'body' => 'Dolor eu consequat eu officia do. Sint mollit elit adipisicing reprehenderit in dolor duis fugiat enim minim. Amet irure cillum reprehenderit nostrud incididunt nisi. Nisi incididunt nulla esse reprehenderit officia elit. Incididunt quis reprehenderit esse ex elit.'
-        ],
-        [
-            'title' => 'Judul Kedua',
-            'slug' => 'judul-kedua',
-            'author' => 'Luthfy',
-            'body' => 'Dolor eu consequat eu officia do. Sint mollit elit adipisicing reprehenderit in dolor duis fugiat enim minim. Amet irure cillum reprehenderit nostrud incididunt nisi. Nisi incididunt nulla esse reprehenderit officia elit. Incididunt quis reprehenderit esse ex elit.'
-        ],
-        [
-            'title' => 'Judul Ketiga',
-            'slug' => 'judul-ketiga',
-            'author' => 'Baru_main982',
-            'body' => 'Dolor eu consequat eu officia do. Sint mollit elit adipisicing reprehenderit in dolor duis fugiat enim minim. Amet irure cillum reprehenderit nostrud incididunt nisi. Nisi incididunt nulla esse reprehenderit officia elit. Incididunt quis reprehenderit esse ex elit.'
-        ]
-    ];
+Route::get('/berita', [PostController::class, 'index']);
 
-    return view('berita', [
-        'title' => 'Berita',
-        'posts' => $blog_posts
-    ]);
+// route siswa
+Route::controller(StudentController::class)->group(function () {
+    Route::get('/siswa', 'index');
+    Route::get('/siswa/tambah', 'tambah');
+    Route::post('/siswa/simpan', 'simpan');
+    Route::get('/siswa/edit/{id}', 'edit');
+    Route::put('/siswa/update/{id}', 'update');
+    Route::get('/siswa/hapus/{id}', 'delete');
 });
 
 Route::get('post/{slug}', function ($slug) {
-    $blog_posts = [
-        [
-            'title' => 'Judul Pertama',
-            'slug' => 'judul-pertama',
-            'author' => 'Ecobag',
-            'body' => 'Dolor eu consequat eu officia do. Sint mollit elit adipisicing reprehenderit in dolor duis fugiat enim minim. Amet irure cillum reprehenderit nostrud incididunt nisi. Nisi incididunt nulla esse reprehenderit officia elit. Incididunt quis reprehenderit esse ex elit.'
-        ],
-        [
-            'title' => 'Judul Kedua',
-            'slug' => 'judul-kedua',
-            'author' => 'Luthfy',
-            'body' => 'Dolor eu consequat eu officia do. Sint mollit elit adipisicing reprehenderit in dolor duis fugiat enim minim. Amet irure cillum reprehenderit nostrud incididunt nisi. Nisi incididunt nulla esse reprehenderit officia elit. Incididunt quis reprehenderit esse ex elit.'
-        ],
-        [
-            'title' => 'Judul Ketiga',
-            'slug' => 'judul-ketiga',
-            'author' => 'Baru_main982',
-            'body' => 'Dolor eu consequat eu officia do. Sint mollit elit adipisicing reprehenderit in dolor duis fugiat enim minim. Amet irure cillum reprehenderit nostrud incididunt nisi. Nisi incididunt nulla esse reprehenderit officia elit. Incididunt quis reprehenderit esse ex elit.'
-        ]
-    ];
-
-    $new_post = [];
-    foreach ($blog_posts as $post) {
-        if ($post['slug'] === $slug) {
-            $new_post = $post;
-        }
-    }
-
     return view('post', [
         'title' => 'Single Post',
-        'post' => $new_post
+        'post' => Post::getBySlug($slug)
     ]);
 });
 
@@ -104,16 +38,10 @@ Route::get('/agenda', function () {
     ]);
 });
 
-Route::get('/kontak', function () {
-    return view('kontak', [
-        'title' => 'Kontak',
-        'name' => 'Luthfy Hakim',
-        'email' => 'luthfyhakim250404@gmail.com'
-    ]);
-});
-
 Route::get('/profil', function () {
     return view('profil', [
-        'title' => 'Profil'
+        'title' => 'Profil',
+        'name' => 'Luthfy Hakim',
+        'email' => 'luthfyhakim250404@gmail.com'
     ]);
 });
