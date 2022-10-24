@@ -56,7 +56,7 @@
                             <a class="dropdown-item {{ $title === 'Data Siswa' ? 'active' : '' }}" href="/siswa">Data Siswa</a>
                         </li>
                         <li>
-                            <a class="dropdown-item {{ $title === 'Lowongan Kerja' ? 'active' : '' }}" href="/kerja">Lowongan Kerja</a>
+                            <a class="dropdown-item {{ $title === 'Lowongan Kerja' ? 'active' : '' }}" href="/loker">Lowongan Kerja</a>
                         </li>
                     </ul>
                 </li>

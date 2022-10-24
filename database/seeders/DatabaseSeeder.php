@@ -22,5 +22,6 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         \App\Models\Guru::factory(5)->create();
+        \App\Models\Loker::factory(20)->create();
     }
 }

@@ -4,6 +4,7 @@ use App\Models\Post;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\GuruController;
+use App\Http\Controllers\LokerController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -35,6 +36,8 @@ Route::controller(GuruController::class)->group(function () {
     Route::put('/guru/update/{id}', 'update');
     Route::get('/guru/delete/{id}', 'delete')->name('guru.delete');
 });
+
+Route::get('/loker', [LokerController::class, 'index'])->name('loker');
 
 Route::get('post/{slug}', function ($slug) {
     return view('post', [
