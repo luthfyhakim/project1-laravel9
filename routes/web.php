@@ -37,7 +37,17 @@ Route::controller(GuruController::class)->group(function () {
     Route::get('/guru/delete/{id}', 'delete')->name('guru.delete');
 });
 
-Route::get('/loker', [LokerController::class, 'index'])->name('loker');
+// route loker
+// Route::resource('loker', LokerController::class);
+Route::controller(LokerController::class)->group(function () {
+    Route::get('/loker', 'index')->name('loker');
+    Route::get('/loker/create', 'create')->name('loker.create');
+    Route::post('/loker/store', 'store');
+    Route::get('/loker/show/{id}', 'show')->name('loker.detail');
+    Route::get('/loker/edit/{id}', 'edit')->name('loker.edit');
+    Route::put('/loker/update/{id}', 'update');
+    Route::get('/loker/delete/{id}', 'delete')->name('loker.delete');
+});
 
 Route::get('post/{slug}', function ($slug) {
     return view('post', [
