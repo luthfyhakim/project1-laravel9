@@ -1,11 +1,13 @@
 <?php
 
 use App\Models\Post;
-use App\Http\Controllers\PostController;
-use App\Http\Controllers\StudentController;
-use App\Http\Controllers\GuruController;
-use App\Http\Controllers\LokerController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\GuruController;
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\LokerController;
+use App\Http\Controllers\StudentController;
+use App\Http\Controllers\RegisterController;
 
 Route::get('/', function () {
     return view('home', [
@@ -47,6 +49,21 @@ Route::controller(LokerController::class)->group(function () {
     Route::get('/loker/edit/{id}', 'edit')->name('loker.edit');
     Route::put('/loker/update/{id}', 'update');
     Route::get('/loker/delete/{id}', 'delete')->name('loker.delete');
+});
+
+// route login
+Route::get('/login', [LoginController::class, 'login'])->middleware('guest');
+Route::post('/login', [LoginController::class, 'authenticate']);
+
+// route register
+Route::get('/register', [RegisterController::class, 'register']);
+Route::post('/register', [RegisterController::class, 'store']);
+
+// route logout
+Route::post('/logout', [LoginController::class, 'logout']);
+
+Route::get('/home', function () {
+    return view('dashboard.home');
 });
 
 Route::get('post/{slug}', function ($slug) {
