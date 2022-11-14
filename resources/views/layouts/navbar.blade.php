@@ -19,25 +19,25 @@
                     <!-- Dropdown menu -->
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <li>
-                            <a class="dropdown-item {{ $title === 'Data Guru' ? 'active' : '' }}" href="/">Rekayasa Perangkat Lunak</a>
+                            <a class="dropdown-item {{ $title === 'Keahlian RPL' ? 'active' : '' }}" href="{{ route('rpl') }}">Rekayasa Perangkat Lunak</a>
                         </li>
                         <li>
-                            <a class="dropdown-item {{ $title === 'Data Siswa' ? 'active' : '' }}" href="/">Desain Pemodelan dan Informasi Bangunan</a>
+                            <a class="dropdown-item {{ $title === 'Keahlian DPIB' ? 'active' : '' }}" href="{{ route('dpib') }}">Desain Pemodelan dan Informasi Bangunan</a>
                         </li>
                         <li>
-                            <a class="dropdown-item {{ $title === 'Lowongan Kerja' ? 'active' : '' }}" href="/">Teknik Konstruksi Perumahan</a>
+                            <a class="dropdown-item {{ $title === 'Keahlian TKP' ? 'active' : '' }}" href="{{ route('tkp') }}">Teknik Konstruksi Perumahan</a>
                         </li>
                         <li>
-                            <a class="dropdown-item {{ $title === 'Lowongan Kerja' ? 'active' : '' }}" href="/">Tata Boga</a>
+                            <a class="dropdown-item {{ $title === 'Keahlian Tata Boga' ? 'active' : '' }}" href="{{ route('boga') }}">Tata Boga</a>
                         </li>
                         <li>
-                            <a class="dropdown-item {{ $title === 'Lowongan Kerja' ? 'active' : '' }}" href="/">Kuliner</a>
+                            <a class="dropdown-item {{ $title === 'Keahlian Kuliner' ? 'active' : '' }}" href="{{ route('kuliner') }}">Kuliner</a>
                         </li>
                         <li>
-                            <a class="dropdown-item {{ $title === 'Lowongan Kerja' ? 'active' : '' }}" href="/">Teknik Pendinginan dan Tata Udara</a>
+                            <a class="dropdown-item {{ $title === 'Keahlian Teknik Pendinginan' ? 'active' : '' }}" href="{{ route('tptu') }}">Teknik Pendinginan dan Tata Udara</a>
                         </li>
                         <li>
-                            <a class="dropdown-item {{ $title === 'Lowongan Kerja' ? 'active' : '' }}" href="/">Teknik Pengelasan</a>
+                            <a class="dropdown-item {{ $title === 'Keahlian Pengelasan' ? 'active' : '' }}" href="{{ route('tp') }}">Teknik Pengelasan</a>
                         </li>
                     </ul>
                 </li>

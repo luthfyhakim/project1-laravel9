@@ -19,6 +19,65 @@ Route::get('/', function () {
 
 Route::get('/berita', [PostController::class, 'index']);
 
+Route::get('post/{slug}', function ($slug) {
+    return view('berita.post', [
+        'title' => 'Single Post',
+        'post' => Post::getBySlug($slug)
+    ]);
+});
+
+Route::get('/agenda', function () {
+    return view('agenda.index', [
+        'title' => 'Agenda'
+    ]);
+});
+
+Route::get('/profil', function () {
+    return view('profil.index', [
+        'title' => 'Profil',
+        'name' => 'Luthfy Hakim',
+        'email' => 'luthfyhakim250404@gmail.com'
+    ]);
+});
+
+// route keahlian
+Route::prefix('keahlian')->group(function () {
+    // rpl
+    Route::get('/rpl', function () {
+        return view('keahlian.rpl.index');
+    })->name('rpl');
+
+    // dpib
+    Route::get('/dpib', function () {
+        return view('keahlian.dpib.index');
+    })->name('dpib');
+
+    // tkp
+    Route::get('/tkp', function () {
+        return view('keahlian.tkp.index');
+    })->name('tkp');
+
+    // boga
+    Route::get('/boga', function () {
+        return view('keahlian.boga.index');
+    })->name('boga');
+
+    // kuliner
+    Route::get('/kuliner', function () {
+        return view('keahlian.kuliner.index');
+    })->name('kuliner');
+
+    // tptu
+    Route::get('/tptu', function () {
+        return view('keahlian.tptu.index');
+    })->name('tptu');
+
+    // tp
+    Route::get('/tp', function () {
+        return view('keahlian.tp.index');
+    })->name('tp');
+});
+
 // route siswa
 Route::controller(StudentController::class)->group(function () {
     Route::get('/siswa', 'index')->name('siswa');
@@ -62,27 +121,7 @@ Route::post('/register', [RegisterController::class, 'store']);
 // route logout
 Route::post('/logout', [LoginController::class, 'logout']);
 
+// dashboard user
 Route::get('/home', function () {
     return view('dashboard.home');
-});
-
-Route::get('post/{slug}', function ($slug) {
-    return view('post', [
-        'title' => 'Single Post',
-        'post' => Post::getBySlug($slug)
-    ]);
-});
-
-Route::get('/agenda', function () {
-    return view('agenda', [
-        'title' => 'Agenda'
-    ]);
-});
-
-Route::get('/profil', function () {
-    return view('profil', [
-        'title' => 'Profil',
-        'name' => 'Luthfy Hakim',
-        'email' => 'luthfyhakim250404@gmail.com'
-    ]);
 });

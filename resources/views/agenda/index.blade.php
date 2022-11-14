@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('layouts.main2')
 @section('container')
     <div class="text-center mb-7">
         <h1>Agenda Sekolah</h1>
